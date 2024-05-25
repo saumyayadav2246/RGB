@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RGB color generator</title>
+	<style type="text/css">
+		#main{
+			height: 330px;
+			width: 250px;
+			background-color: rgb(189,220,255);
+			padding: 10px;
+			border-radius: 20px;
+			margin-top: 150px;
+		}
+		#copy{
+			background-color: rgb(189,220,255);
+			border: none;
+			cursor: pointer;
+		}
+		#note{
+			font-size: 13px;
+		}	
+		#rgb{
+			width: 150px;
+			text-align: center;
+			border-radius: 50px;
+			border: groove 3px black;
+			cursor: not-allowed; 
+		}
+		input[type="range"] { 
+			-webkit-appearance: none; 
+			height: 10px; 
+			width: 80%; 
+			border-radius: 50px;
+		}
+		input[type="range"]::-webkit-slider-thumb { 
+			-webkit-appearance: none; 
+			height: 17px; 
+			width: 17px; 
+			background: #000; 
+			border-radius: 10px; 
+			cursor: pointer;
+			border: groove 3px gray;
+		} 
+		#red {
+			background: linear-gradient(90deg, #000, red);
+		} 
+		#green { 
+			background: linear-gradient(90deg, #000, green); 
+		} 
+		#blue { 
+			background: linear-gradient(90deg, #000, blue); 
+		}
+	</style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body id="body">
+	<center>
+		<div id="main">
+			<p id="note">Note : color preview display on background</p>
+			<h1>RGB Color Generator</h1>
+			<input type="text" name="rgb" id="rgb" value="rgb(255,255,255)" readonly>
+			<button id="copy" onclick="OnPressedCopy()" style="font-size:20px"><i class="fa fa-copy"></i></button>
+			<br>
+			<br>
+
+			Red:
+			<br>
+			<input type="range" name="Red" id="red" value="255" min="0" max="255" oninput="OnRangeChange()">
+			<br>
+
+			Green:
+			<br>
+			<input type="range" name="Green" id="green" value="255" min="0" max="255" oninput="OnRangeChange()">
+			<br>
+
+			Blue:
+			<br>
+			<input type="range" name="Blue" id="blue" value="255" min="0" max="255" oninput="OnRangeChange()">
+			<h6>Made By <mark><i>SAUMYA YADAV</i></mark></h6>
+		</div>
+	</center>
+	<script>
+		var RedValue = document.getElementById('RedValue');
+		var GreenValue = document.getElementById('GreenValue');
+		var BlueValue = document.getElementById('BlueValue');
+		var Red = document.getElementById('red');
+		var Green = document.getElementById('green');
+		var Blue = document.getElementById('blue');
+		var rgb = document.getElementById('rgb');
+		function OnRangeChange() {
+			RedV = Red.value;
+			BlueV = Blue.value;
+			GreenV = Green.value;
+			var BgColor = 'rgb('+RedV+','+GreenV+','+BlueV+')';
+			rgb.value = BgColor;
+			document.body.style.backgroundColor = BgColor;
+		}
+		function OnPressedCopy() {
+			rgb.select();
+			rgb.setSelectionRange(0, 99999);
+			navigator.clipboard.writeText(rgb.value);
+			alert(rgb.value+" Is Copied On Clipbord");
+		}
+	</script>
+</script>
+</body>
+</html>
